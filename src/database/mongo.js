@@ -14,7 +14,7 @@ mongoClient
     console.log(chalk.cyan("Database is connected!"));
   })
   .catch((err) => {
-    console.log(chalk.red("Error to connect to MongoDB"));
+    console.log(chalk.red(err.message));
   });
 
 export { database };

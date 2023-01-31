@@ -8,8 +8,14 @@ async function poolIn(req, res) {
 }
 
 async function poolOut(req, res) {
-  const pollList = await db.collection("poll").find().toString();
-  res.send(pollList);
+    
+    try {
+      const pollList = await db.collection("polls").find().toArray();
+      return res.send(pollList);
+    } catch (error) {
+      res.status(404).send("Erro ao carregar a lista de polls");
+    }
+    return res.send(pollList);
 }
 
 export { poolIn, poolOut };

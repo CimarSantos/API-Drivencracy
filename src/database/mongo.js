@@ -5,16 +5,16 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const mongoClient = new MongoClient(process.env.MONGO_URI);
-let database;
+let db;
 
 mongoClient
   .connect()
   .then(() => {
-    database = mongoClient.database("drivencracy");
-    console.log(chalk.cyan("Database is connected!"));
+    db = mongoClient.db("drivencracy");
+    console.log(chalk.green("Connected to database"));
   })
   .catch((err) => {
-    console.log(chalk.red(err.message));
+    console.log(chalk.red("Error connecting"));
   });
 
-export { database };
+export { db };

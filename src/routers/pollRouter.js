@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { poolIn, poolOut } from "../controllers/pollController.js";
+import { validadePoll } from "../middlewares/poll.middleware.js";
 
 const pollRouter = Router();
 
-pollRouter.post("/poll", poolIn);
+pollRouter.post("/poll", validadePoll, poolIn);
 pollRouter.get("/poll", poolOut);
 
 export { pollRouter };

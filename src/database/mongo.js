@@ -11,7 +11,7 @@ mongoClient
   .connect()
   .then(() => {
     db = mongoClient.db("drivencracy");
-    console.log(chalk.green("Connected to database"));
+    console.log(chalk.cyan("Connected to database"));
   })
   .catch((err) => {
     console.log(chalk.red("Error connecting"));

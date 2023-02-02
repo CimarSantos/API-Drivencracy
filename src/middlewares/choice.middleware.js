@@ -6,7 +6,7 @@ async function validadeChoice(req, res, next) {
   const choice = req.body;
   const atualData = new Date();
 
-  const { error } = await choiceSchema.validate(choice, { abortEarly: false });
+  const { error } = choiceSchema.validate(choice, { abortEarly: false });
 
   if (error) return res.status(422).send(error.message);
 
@@ -33,7 +33,7 @@ async function validadeChoice(req, res, next) {
   try {
     next();
   } catch (error) {
-    return res.status(500).send("Enquete não encontrada.");
+    return res.status(500).send("Erro no servidor.");
   }
 }
 

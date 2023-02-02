@@ -2,16 +2,6 @@ import { ObjectId } from "mongodb";
 import { db } from "../database/mongo.js";
 import { choiceSchema } from "../schema/Schemas.js";
 
-/* Entrar na collection "polls" e procurar e pegar a poll com este ID */
-/* Caso não retorne nada, dar um res com o erro 404*/
-
-/* Acessar o banco de choices e procurar nele se existe uma choice com o mesmo título e com a mesma pollId */
-/* Se encontrar algum, returne o erro 409*/
-
-/* Se o expireAt da poll ainda não expirou. Caso tenha expirado, retorne o erro 403 */
-
-/* Passado por tudo, returnar status 201, de criação com sucesso*/
-
 async function validadeChoice(req, res, next) {
   const choice = req.body;
   const atualData = new Date();
@@ -45,12 +35,6 @@ async function validadeChoice(req, res, next) {
   } catch (error) {
     return res.status(500).send("Enquete não encontrada.");
   }
-
-  /* if (error) {
-    const message = error.details.map((detail) => detail.message);
-
-    return res.status(422).send(message);
-  } */
 }
 
 export { validadeChoice };

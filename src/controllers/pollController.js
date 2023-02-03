@@ -33,8 +33,10 @@ async function pollResult(req, res) {
     return res.status(404).send("Esta enquete não ainda não tem respostas");
 
   const choiceIds = ifContainChoice.map((id) => `${id._id}`);
+  // const choiceTitle = ifContainChoice.map((title) => `${title.title}`);
   /* console.log(ifContainChoice);
-  console.log(choiceIds); */
+  console.log(choiceIds); 
+  console.log(choiceTitle); */
 
   let listVotes = [];
 
@@ -44,15 +46,17 @@ async function pollResult(req, res) {
       .find({ idChoice: ifContainChoice[i].id })
       .toArray();
 
-    const finalResult = {
+    const finalVotes = {
       idChoice: ifContainChoice[i],
       votes: votes.length,
     };
 
-    listVotes.push(finalResult);
+    listVotes.push(finalVotes);
   }
 
-  console.log(listVotes);
+  const totalVotes = listVotes.map((v) => v.votes);
+
+    console.log(totalVotes);
 
   return res.send(ifContainChoice);
 }

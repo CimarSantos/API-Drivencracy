@@ -13,12 +13,17 @@ async function choicesIn(req, res) {
 }
 
 async function choicesOut(req, res) {
-  try {
-    const choicesList = await db.collection("choices").find({}).toArray();
-    return res.send(choicesList);
-  } catch (error) {
-    res.status(404).send("Erro ao carregar a lista de polls");
-  }
+    const id = req.params.id;
+
+    try {
+      const choicesList = await db
+        .collection("choices")
+        .find({ pollId: id })
+        .toArray();
+      return res.send(choicesList);
+    } catch (error) {
+      res.status(404).send("Erro ao carregar a lista de polls");
+    }
 }
 
 export { choicesIn, choicesOut };

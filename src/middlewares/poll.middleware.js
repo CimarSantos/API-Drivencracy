@@ -25,10 +25,8 @@ function validadePoll(req, res, next) {
   const novaData = addDays(data, dias);
   const dataExpire = formatDate(novaData);
 
-  console.log(dataExpire);
   if (req.body.expireAt == "") {
     req.body.expireAt = dataExpire;
-    console.log(req.body.expireAt);
   }
 
   if (error) {
